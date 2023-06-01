@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin flex-center-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin font($weight, $size, $height, $color) {
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $height;
+  color: $color;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans',
+    sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+
+.header {
+  background: #FFFFFF;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+
+  &-inner {
+    @include flex-center-between;
+    padding-top: 18px;
+    padding-bottom: 18px;
+
+    &__logo {
+      @include font(700, 24px, 130%, #000);
+      text-decoration: none;
+    }
+
+    &-right {
+      &__links {
+        @include font(400, 15px, 24px, #000);
+        text-decoration: none;
+        padding: 8px 16px;
+        position: relative;
+
+        &:hover {
+          &::before {
+            transition: all ease 0.5s;
+            transform: scaleX(1);
+          }
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 2px;
+          background: #00BAFC;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          transform: scaleX(0);
+          transition: all ease 0.5s;
+        }
+
+        &--phone {
+          @include font(700, 15px, 24px, #fff);
+          padding: 8px 16px;
+          box-sizing: border-box;
+          background: #00BAFC;
+          border-radius: 5px;
+          text-decoration: none;
+          margin-left: 16px;
+        }
+      }
+    }
+  }
+
+}
+
+.section1 {
+  padding-top: 80px;
+  @include flex-between;
+  &-left {
+    width: calc(50% - 86px);
+
+    &__title {
+      @include font(700, 30px, 130%, #000)
+    }
+
+    &__text {
+      @include font(400, 16px, 24px, #000);
+      margin-top: 16px;
+    }
+
+    &__link {
+      margin-top: 16px;
+      @include font(700, 16px, 24px, #fff);
+      padding: 8px 16px;
+      box-sizing: border-box;
+      display: inline-flex;
+      background: #00BAFC;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+  }
+
+  &-right {
+    width: calc(50% - 86px);
+    iframe {
+      width: 458px;
+      height: 258px;
+    }
+  }
+}
+
+.section2 {
+  margin-top: 100px;
+  &-top {
+    text-align: center;
+    &__title {
+      @include font(700, 24px, 130%, #000)
+    }
+
+    &__text {
+      @include font(400, 16px, 24px, #000);
+      max-width: 70%;
+      margin: 0 auto;
+    }
+  }
+
+  &-center {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 16px;
+
+    &-blocks {
+      width: calc(100% / 3 - (140px / 3));
+      padding: 32px 58px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #FFFFFF;
+      box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      margin-bottom: 50px;
+
+
+      &-img {
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      span:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      &:nth-child(2) {
+        margin-left:  70px;
+        margin-right:  70px;
+      }
+
+      &:nth-child(4) {
+        margin-right: 35px;
+      }
+      &:nth-child(5) {
+        margin-left: 35px;
+        
+      }
+    }
+  }
+}
+
+.footer {
+  text-align: center;
+  padding: 50px;
+  background: #191919;
+  color: #fff;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  @include flex-center;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.403);
+  display: none;
+  &.active {
+    display: flex;
+  }
+
+  &-inner {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    background: #FFFFFF;
+    border-radius: 5px;
+    padding: 24px;
+    box-sizing: border-box;
+    input {
+      background: #F3F3F3;
+      border-radius: 5px;
+      @include font(400, 16px, 150%, #000);
+      border: none;
+      outline: none;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    button {
+      @include font(700, 15px, 24px, #fff);
+      padding: 8px 16px;
+      box-sizing: border-box;
+      background: #00BAFC;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-left: 16px;
+      outline: none;
+      border: none;
+    }
+    
+  }
+}
